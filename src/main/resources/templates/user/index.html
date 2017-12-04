@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+</head>
+<body>
+<div class="container body-content" th:each="user : ${users}">
+    <h1 th:text="${'Hello ' + user.getUserName()}"></h1>
+
+</div>
+
+</body>
+</html>
