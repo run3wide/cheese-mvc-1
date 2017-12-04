@@ -22,6 +22,9 @@ public class User {
     @Size(min = 1)
     private String password;
 
+    @NotNull(message = "Passwords do not match!")
+    private String verifyPassword;
+
     private static int nextId = 0;
 
     public User() {
@@ -66,6 +69,23 @@ public class User {
 
     public User setPassword(String password) {
         this.password = password;
+        checkPassword();
         return this;
+    }
+
+    public String getVerifyPassword() {
+        return verifyPassword;
+    }
+
+    public User setVerifyPassword(String verifyPassword) {
+        this.verifyPassword = verifyPassword;
+        checkPassword();
+        return this;
+    }
+
+    private void checkPassword() {
+        if (password != null && verifyPassword != null && !verifyPassword.equals(password)) {
+            verifyPassword = null;
+        }
     }
 }

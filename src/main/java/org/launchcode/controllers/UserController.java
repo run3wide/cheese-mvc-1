@@ -26,12 +26,11 @@ public class UserController {
 
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public static String processAddUser(@ModelAttribute @Valid User user, Errors errors, Model model, @RequestParam String verify) {
+    public static String processAddUser(@ModelAttribute @Valid User user, Errors errors, Model model) {
 
-        if (errors.hasErrors() || !user.getPassword().equals(verify)) {
+        if (errors.hasErrors()) {
             model.addAttribute("title", "Add User");
             model.addAttribute("user", user);
-            model.addAttribute("passwordError", "The passwords provided don't match!");
             return "user/add";
         }
         UserData.addUser(user);
